@@ -1,0 +1,4 @@
+*+ WARNING: -stim_times 1 .. TENT(0, 7, 8) has inter-knot TR=1 but -iresp output TR=2
+*+ WARNING: -stim_times 2 .. TENT(0, 7, 8) has inter-knot TR=1 but -iresp output TR=2
+*+ WARNING: -stim_times 3 .. TENT(0, 7, 8) has inter-knot TR=1 but -iresp output TR=2
+*+ WARNING: -stim_times 4 .. TENT(0, 7, 8) has inter-knot TR=1 but -iresp output TR=2
