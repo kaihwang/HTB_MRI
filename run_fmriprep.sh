@@ -8,7 +8,7 @@ WD='/home/despoB/kaihwang/HTB_fMRI/'
 #cd ${WD}/fmriprep;
 
 fmriprep \
-    --participant_label Pilot03 \
+    --participant_label Pilot04 \
     --nthreads 1 \
     --output-space T1w template \
     --template MNI152NLin2009cAsym \
