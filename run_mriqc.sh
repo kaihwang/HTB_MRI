@@ -3,7 +3,7 @@ source /home/despoB/kaihwang/.bashrc;
 source activate mriqc;
 #SUB_ID=$(echo ${SGE_TASK} | grep -Eo "^[[:digit:]]{1,}")
 #session=$(echo ${SGE_TASK} | grep -Eo "[A-Z][a-zA-Z0-9]{1,}")
-
+SUB_ID="${SGE_TASK}";
 WD='/home/despoB/kaihwang/HTB_fMRI/'
 #SCRIPTS='/home/despoB/kaihwang/bin/TTD/Preprocessing'
 
@@ -14,9 +14,9 @@ cd ${WD}/QC
 
 #if [ "${nruns}" != "${n_raw}" ]; then
 mriqc \
-    --participant_label Pilot04 \
+    --participant_label ${SUB_ID} \
     -m T1w bold \
-    --n_procs 1 \
+    --n_procs 4 \
     --mem_gb 8 \
     --ica \
     --ants-nthreads 4 \
