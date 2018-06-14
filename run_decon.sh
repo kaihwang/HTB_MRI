@@ -2,7 +2,7 @@
 
 # test 3dDeconvolve
 
-for s in  Sub41Htb ; do
+for s in sub54 ; do
 
 	for task in HTBMB2; do
 
@@ -56,6 +56,11 @@ for s in  Sub41Htb ; do
 		1d_tool.py -infile ${Output}/sub-${s}/motion.tsv -set_nruns 8 -show_censor_count -censor_motion 0.2 ${Output}/sub-${s}/FD0.2 -censor_prev_TR -overwrite
 
 		3dMean -count -prefix ${Output}/sub-${s}/union_mask.nii.gz ${Raw}/func/*task-${task}*MNI152NLin2009cAsym_brainmask.nii.gz
+
+
+		# do pars
+		nrun=$(/bin/ls ${Raw}/func/sub-${s}_task-${task}_run-*_bold_space-MNI152NLin2009cAsym_smoothed_scaled_preproc.nii.gz | wc -l)
+		echo "$s $nrun" | python /home/despoB/kaihwang/bin/HTB_MRI/pars_stim.py
 
 		if [ -e ${Output}/sub-${s}/FD0.2 ]; then
 
