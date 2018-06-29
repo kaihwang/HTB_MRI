@@ -2,7 +2,7 @@
 
 # test 3dDeconvolve
 
-for s in sub54 ; do
+for s in ${SGE_TASK}; do  #sub43 sub44 sub45 sub46 sub48 sub49 sub52 sub53 sub54
 
 	for task in HTBMB2; do
 
@@ -60,7 +60,7 @@ for s in sub54 ; do
 
 		# do pars
 		nrun=$(/bin/ls ${Raw}/func/sub-${s}_task-${task}_run-*_bold_space-MNI152NLin2009cAsym_smoothed_scaled_preproc.nii.gz | wc -l)
-		echo "$s $nrun" | python /home/despoB/kaihwang/bin/HTB_MRI/pars_stim.py
+		#echo "$s $nrun" | python /home/despoB/kaihwang/bin/HTB_MRI/pars_stim.py
 
 		if [ -e ${Output}/sub-${s}/FD0.2 ]; then
 
@@ -78,29 +78,32 @@ for s in sub54 ; do
 			-iresp 2 ${Output}/sub-${s}/R8_FIR_MNI.nii.gz \
 			-iresp 3 ${Output}/sub-${s}/D1_FIR_MNI.nii.gz \
 			-iresp 4 ${Output}/sub-${s}/D2_FIR_MNI.nii.gz \
-			-num_glt 16 \
-			-gltsym 'SYM: +1*D1[1..4] +1*D2[1..4] -1*R4[1..4] -1*R8[1..4] ' -glt_label 1 D1+D2-R4+R8 \
-			-gltsym 'SYM: +1*D2[1..4] +1*R8[1..4] -1*D1[1..4] -1*R4[1..4] ' -glt_label 2 D2+R8-D1-R4 \
-			-gltsym 'SYM: +1*D2[1..4] -1*D1[1..4] -1*R8[1..4] +1*R4[1..4] ' -glt_label 3 D2-D1-R8+R4 \
-			-gltsym 'SYM: +1*R8[1..4] -1*R4[1..4] ' -glt_label 4 R8-R4 \
-			-gltsym 'SYM: +1*D2[1..4] -1*D1[1..4] ' -glt_label 5 D2-D1 \
-			-gltsym 'SYM: +1*D2[1..4] -1*R8[1..4] ' -glt_label 6 D2-R8 \
-			-gltsym 'SYM: +1*D1[1..4] -1*R4[1..4] ' -glt_label 7 D1-R4 \
-			-gltsym 'SYM: +1*D2[1..4] -1*R4[1..4] ' -glt_label 8 D2-R4 \
-			-gltsym 'SYM: +1*R8[1..4] -1*D1[1..4] ' -glt_label 9 R8-D1 \
-			-gltsym 'SYM: +0.5*R4[1..4] +0.5*R8[1..4] ' -glt_label 10 R4+R8 \
-			-gltsym 'SYM: +0.5*D1[1..4] +0.5*D2[1..4] ' -glt_label 11 D1+D2 \
-			-gltsym 'SYM: +1*D1[1..4] ' -glt_label 12 D1 \
-			-gltsym 'SYM: +1*D2[1..4] ' -glt_label 13 D2 \
-			-gltsym 'SYM: +1*R4[1..4] ' -glt_label 14 R4 \
-			-gltsym 'SYM: +1*R8[1..4] ' -glt_label 15 R8 \
-			-gltsym 'SYM: +1*R8[1..4]+1*R4[1..4]+1*D1[1..4]+1*D2[1..4] ' -glt_label 16 alltask \
+			-num_glt 18 \
+			-gltsym 'SYM: +1*D1[2..7] +1*D2[2..7] -1*R4[2..7] -1*R8[2..7] ' -glt_label 1 D1+D2-R4+R8 \
+			-gltsym 'SYM: +1*D2[2..7] +1*R8[2..7] -1*D1[2..7] -1*R4[2..7] ' -glt_label 2 D2+R8-D1-R4 \
+			-gltsym 'SYM: +1*D2[2..7] -1*D1[2..7] -1*R8[2..7] +1*R4[2..7] ' -glt_label 3 D2-D1-R8+R4 \
+			-gltsym 'SYM: +1*R8[2..7] -1*R4[2..7] ' -glt_label 4 R8-R4 \
+			-gltsym 'SYM: +1*D2[2..7] -1*D1[2..7] ' -glt_label 5 D2-D1 \
+			-gltsym 'SYM: +1*D2[2..7] -1*R8[2..7] ' -glt_label 6 D2-R8 \
+			-gltsym 'SYM: +1*D1[2..7] -1*R4[2..7] ' -glt_label 7 D1-R4 \
+			-gltsym 'SYM: +1*D2[2..7] -1*R4[2..7] ' -glt_label 8 D2-R4 \
+			-gltsym 'SYM: +1*R8[2..7] -1*D1[2..7] ' -glt_label 9 R8-D1 \
+			-gltsym 'SYM: +0.5*R4[2..7] +0.5*R8[2..7] ' -glt_label 10 R4+R8 \
+			-gltsym 'SYM: +0.5*D1[2..7] +0.5*D2[2..7] ' -glt_label 11 D1+D2 \
+			-gltsym 'SYM: +1*D1[2..7] ' -glt_label 12 D1 \
+			-gltsym 'SYM: +1*D2[2..7] ' -glt_label 13 D2 \
+			-gltsym 'SYM: +1*R4[2..7] ' -glt_label 14 R4 \
+			-gltsym 'SYM: +1*R8[2..7] ' -glt_label 15 R8 \
+			-gltsym 'SYM: +1*R8[2..7]+1*R4[2..7]+1*D1[2..7]+1*D2[2..7] ' -glt_label 16 alltask \
+			-gltsym 'SYM: +1*D1[2..7]-1*D2[2..7]-1*R4[2..7]-1*R8[2..7] ' -glt_label 17 D1-D2-R4-R8 \
+			-gltsym 'SYM: +0.5*R4[2..7]+0.5*R8[2..7]-1*D1[2..7]-1*D2[2..7] ' -glt_label 18 R4+R8-D1-D2 \
 			-rout \
 			-tout \
-			-bucket ${Output}/sub-${s}/FIRmodel_task-${task}_MNI_stats.nii.gz \
+			-bucket ${Output}/sub-${s}/FIRmodel_task-${task}_MNI_stats_TR2to7.nii.gz \
 			-GOFORIT 100 \
 			-noFDR \
 			-nocout \
+			-jobs 4 \
 			-allzero_OK
 
 		elif [ ! -e ${Output}/sub-${s}/FD0.2 ]; then
@@ -118,29 +121,32 @@ for s in sub54 ; do
 			-iresp 2 ${Output}/sub-${s}/R8_FIR_MNI.nii.gz \
 			-iresp 3 ${Output}/sub-${s}/D1_FIR_MNI.nii.gz \
 			-iresp 4 ${Output}/sub-${s}/D2_FIR_MNI.nii.gz \
-			-num_glt 16 \
-			-gltsym 'SYM: +1*D1[1..4] +1*D2[1..4] -1*R4[1..4] -1*R8[1..4] ' -glt_label 1 D1+D2-R4+R8 \
-			-gltsym 'SYM: +1*D2[1..4] +1*R8[1..4] -1*D1[1..4] -1*R4[1..4] ' -glt_label 2 D2+R8-D1-R4 \
-			-gltsym 'SYM: +1*D2[1..4] -1*D1[1..4] -1*R8[1..4] +1*R4[1..4] ' -glt_label 3 D2-D1-R8+R4 \
-			-gltsym 'SYM: +1*R8[1..4] -1*R4[1..4] ' -glt_label 4 R8-R4 \
-			-gltsym 'SYM: +1*D2[1..4] -1*D1[1..4] ' -glt_label 5 D2-D1 \
-			-gltsym 'SYM: +1*D2[1..4] -1*R8[1..4] ' -glt_label 6 D2-R8 \
-			-gltsym 'SYM: +1*D1[1..4] -1*R4[1..4] ' -glt_label 7 D1-R4 \
-			-gltsym 'SYM: +1*D2[1..4] -1*R4[1..4] ' -glt_label 8 D2-R4 \
-			-gltsym 'SYM: +1*R8[1..4] -1*D1[1..4] ' -glt_label 9 R8-D1 \
-			-gltsym 'SYM: +0.5*R4[1..4] +0.5*R8[1..4] ' -glt_label 10 R4+R8 \
-			-gltsym 'SYM: +0.5*D1[1..4] +0.5*D2[1..4] ' -glt_label 11 D1+D2 \
-			-gltsym 'SYM: +1*D1[1..4] ' -glt_label 12 D1 \
-			-gltsym 'SYM: +1*D2[1..4] ' -glt_label 13 D2 \
-			-gltsym 'SYM: +1*R4[1..4] ' -glt_label 14 R4 \
-			-gltsym 'SYM: +1*R8[1..4] ' -glt_label 15 R8 \
-			-gltsym 'SYM: +1*R8[1..4]+1*R4[1..4]+1*D1[1..4]+1*D2[1..4] ' -glt_label 16 alltask \
+			-num_glt 18 \
+			-gltsym 'SYM: +1*D1[2..7] +1*D2[2..7] -1*R4[2..7] -1*R8[2..7] ' -glt_label 1 D1+D2-R4+R8 \
+			-gltsym 'SYM: +1*D2[2..7] +1*R8[2..7] -1*D1[2..7] -1*R4[2..7] ' -glt_label 2 D2+R8-D1-R4 \
+			-gltsym 'SYM: +1*D2[2..7] -1*D1[2..7] -1*R8[2..7] +1*R4[2..7] ' -glt_label 3 D2-D1-R8+R4 \
+			-gltsym 'SYM: +1*R8[2..7] -1*R4[2..7] ' -glt_label 4 R8-R4 \
+			-gltsym 'SYM: +1*D2[2..7] -1*D1[2..7] ' -glt_label 5 D2-D1 \
+			-gltsym 'SYM: +1*D2[2..7] -1*R8[2..7] ' -glt_label 6 D2-R8 \
+			-gltsym 'SYM: +1*D1[2..7] -1*R4[2..7] ' -glt_label 7 D1-R4 \
+			-gltsym 'SYM: +1*D2[2..7] -1*R4[2..7] ' -glt_label 8 D2-R4 \
+			-gltsym 'SYM: +1*R8[2..7] -1*D1[2..7] ' -glt_label 9 R8-D1 \
+			-gltsym 'SYM: +0.5*R4[2..7] +0.5*R8[2..7] ' -glt_label 10 R4+R8 \
+			-gltsym 'SYM: +0.5*D1[2..7] +0.5*D2[2..7] ' -glt_label 11 D1+D2 \
+			-gltsym 'SYM: +1*D1[2..7] ' -glt_label 12 D1 \
+			-gltsym 'SYM: +1*D2[2..7] ' -glt_label 13 D2 \
+			-gltsym 'SYM: +1*R4[2..7] ' -glt_label 14 R4 \
+			-gltsym 'SYM: +1*R8[2..7] ' -glt_label 15 R8 \
+			-gltsym 'SYM: +1*R8[2..7]+1*R4[2..7]+1*D1[2..7]+1*D2[2..7] ' -glt_label 16 alltask \
+			-gltsym 'SYM: +1*D1[2..7]-1*D2[2..7]-1*R4[2..7]-1*R8[2..7] ' -glt_label 17 D1-D2-R4-R8 \
+			-gltsym 'SYM: +0.5*R4[2..7]+0.5*R8[2..7]-1*D1[2..7]-1*D2[2..7] ' -glt_label 18 R4+R8-D1-D2 \
 			-rout \
 			-tout \
-			-bucket ${Output}/sub-${s}/FIRmodel_task-${task}_MNI_stats.nii.gz \
+			-bucket ${Output}/sub-${s}/FIRmodel_task-${task}_MNI_stats_TR2to7.nii.gz \
 			-GOFORIT 100 \
 			-noFDR \
 			-nocout \
+			-jobs 4 \
 			-allzero_OK
 
 
